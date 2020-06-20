@@ -1,0 +1,32 @@
+server:
+  port: 7777
+logging:
+  file: 
+    path: C:/elk/vz_kafka_publisher
+  level:
+    org.springframework.web: DEBUG
+    org.hibernate: DEBUG
+    com.verizon.profile: DEBUG
+spring:
+  application:
+    name: serviceKafka
+  profiles: 
+    active:
+    - dev
+  cloud:
+    config:
+      uri:
+      - http://localhost:8888/
+  kafka:
+     producer:
+        bootstrap-servers: localhost:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
